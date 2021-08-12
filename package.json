@@ -1,0 +1,19 @@
+{
+  "name": "goit-node-hw-01-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IrinaSelina/goit-node-hw-01-CLI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IrinaSelina/goit-node-hw-01-CLI/issues"
+  },
+  "homepage": "https://github.com/IrinaSelina/goit-node-hw-01-CLI#readme"
+}
