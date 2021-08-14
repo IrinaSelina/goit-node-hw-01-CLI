@@ -3,23 +3,12 @@ const path = require('path');
 const fs = require('fs').promises;
 const contactsPath = path.join(__dirname,'./db/contacts.json');
 const {v4} = require("uuid");
-// const contactsPath = require('db/contacts.json')
-
-// (async()=>{
-//     try{
-//         const data = await fs.readFile('db/contacts.json', 'utf-8');
-//         console.log(data);
-//     }
-//     catch(error){
-//         console.log(error.message);
-//     }
-// })()
 
 const listContacts = async()=>{
         try{
             const data = await fs.readFile(contactsPath);
             const contacts = JSON.parse(data)
-            console.log(contacts);
+            console.table(contacts);
             return contacts
         }
         catch(error){
@@ -35,7 +24,7 @@ const getContactById = async(contactId)=>{
         if(!selectContacts){
             throw new Error(`Product with id=${contactId} not found`)
             }
-        console.log(selectContacts);
+            console.table(selectContacts);
         return selectContacts
     }
     catch(error){
@@ -54,6 +43,7 @@ const removeContact = async(contactId)=>{
             const filterContacts = contacts.filter(({ id }) => id !== contactId)
             const productsString = JSON.stringify(filterContacts, null, 2);
             await fs.writeFile(contactsPath, productsString);
+            console.table(contacts)
             return products[idx];
         }
         catch(error){
