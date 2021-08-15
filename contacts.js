@@ -42,10 +42,10 @@ const removeContact = async(contactId)=>{
             throw new Error(`Product with id=${id} not found`);
         }
             const filterContacts = contacts.filter(({ id }) => id !== +contactId)
-            const productsString = JSON.stringify(filterContacts, null, 2);
-            await fs.writeFile(contactsPath, productsString);
+            const contactsString = JSON.stringify(filterContacts, null, 2);
+            await fs.writeFile(contactsPath, contactsString);
             console.table(filterContacts)
-            return products[idx];
+            return contacts[idx];
         }
         catch(error){
             throw error;
