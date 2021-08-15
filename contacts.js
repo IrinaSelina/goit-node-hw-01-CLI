@@ -20,15 +20,16 @@ const getContactById = async(contactId)=>{
     try{
         const data = await fs.readFile(contactsPath);
         const contacts = JSON.parse(data)
-        const selectContacts = contacts.find(({ id }) => id === contactId)
+        const selectContacts = contacts.find(({ id }) => id === +contactId)
         if(!selectContacts){
             throw new Error(`Product with id=${contactId} not found`)
             }
-            console.table(selectContacts);
+        console.table(selectContacts);
         return selectContacts
     }
     catch(error){
         console.log(error.message);
+        throw error
     }
 }
   
@@ -36,18 +37,18 @@ const removeContact = async(contactId)=>{
         try{
             const data = await fs.readFile(contactsPath);
             const contacts = JSON.parse(data)
-            const idx = contacts.findIndex(item => item.id === contactId);
+            const idx = contacts.findIndex(item => item.id === +contactId);
         if(idx === -1){
             throw new Error(`Product with id=${id} not found`);
         }
-            const filterContacts = contacts.filter(({ id }) => id !== contactId)
+            const filterContacts = contacts.filter(({ id }) => id !== +contactId)
             const productsString = JSON.stringify(filterContacts, null, 2);
             await fs.writeFile(contactsPath, productsString);
-            console.table(contacts)
+            console.table(filterContacts)
             return products[idx];
         }
         catch(error){
-            console.log(error.message);
+            throw error;
     
         }
     }
@@ -73,5 +74,6 @@ const addContact = async(name, email, phone) =>{
 
         }
     }
+    // getContactById(5)
     // addContact('Irina', 'dui.in@egetlacus.ca', '380934224283')
   module.exports = { listContacts, getContactById, removeContact, addContact };
